@@ -50,6 +50,9 @@ public class Player : MonoBehaviour {
 	}
 
 	void Update() {
+		if (GameManager.instance.isGameOver)
+			return;
+
 		if (Input.GetMouseButtonDown(0)) {
 			fingerStartPos = Input.mousePosition;
 			fingerStartTime = Time.time;
@@ -228,6 +231,8 @@ public class Player : MonoBehaviour {
 	private void DoPeace() {
 		if (state == State.JUMP) {
 			transform.position = new Vector3 (xPositon, jumpYTo, 0);
+			// Update order
+			GetComponent<SortingLayer> ().UpdateOrder (offset);
 		}
 		state = State.PEAСE;
 	}

@@ -5,15 +5,20 @@ using UnityEngine;
 public class BigWave : MonoBehaviour {
 
 	// Скорость перемещения волны
-	public float speed = 1;
+	private float speed = 0.3f;
 	//
-	public float xDead = -10;
-
+	private float xDead = -10;
+	//
 	private int offset;
 
 	// Инициализация объекта
-	void Initialize(int waveOffset) {
+	void Initialize(int waveOffset, float waveSpeed, float waveXDead) {
 		offset = waveOffset;
+		speed = waveSpeed;
+		xDead = waveXDead;
+
+		// Update order
+		GetComponent<SortingLayer> ().UpdateOrder (offset);
 	}
 
 	// Use this for initialization
@@ -59,10 +64,10 @@ public class BigWave : MonoBehaviour {
 	}
 
 	// Создает объект из префаба
-	public static BigWave CreateWave(int offset) {
+	public static BigWave CreateWave(int offset, float speed, float xDead) {
 		GameObject gameObject = (GameObject) Object.Instantiate (Resources.Load ("Prefabs/BigWave"));
 		BigWave wave = gameObject.GetComponent<BigWave> ();
-		wave.Initialize (offset);
+		wave.Initialize (offset, speed, xDead);
 		return wave;
 	}
 

@@ -46,9 +46,7 @@ public class Player : MonoBehaviour {
 	private State state;
 
 	void OnStart () {
-		transform.position = new Vector3 (xPositon, yPositionMiddle);
-		offset = 1;
-		state = State.PEAСE;
+		ResetState ();
 	}
 
 	void Update() {
@@ -92,6 +90,16 @@ public class Player : MonoBehaviour {
 			}
 		}
 
+		if (Input.GetKeyDown (KeyCode.UpArrow)) {
+			OnSwipeUp ();
+		} else if (Input.GetKeyDown(KeyCode.DownArrow)) {
+			OnSwipeDown ();
+		}
+
+		if (Input.GetKeyDown (KeyCode.Space)) {
+			OnTap ();
+		}
+			
 		if (state == State.JUMP) {
 			float progress = jumpTime / jumpDuration;
 			float jumpY = jumpYFrom + progress * (jumpYTo - jumpYFrom);
@@ -100,6 +108,31 @@ public class Player : MonoBehaviour {
 
 			jumpTime += Time.deltaTime;
 		}
+	}
+
+	void OnTriggerExit2D(Collider2D collider) {
+		Debug.Log ("Collide with Player");
+
+		if (collider.tag == "BigWave") {
+			BigWave wave = collider.GetComponent<BigWave> ();
+			if (wave.IsShown ()) {
+				DoDeadOnWave ();
+			}
+		}
+	}
+
+	public void OnStartGame() {
+		ResetState ();
+	}
+
+	public void OnGameOver() {
+		
+	}
+
+	private void ResetState() {
+		transform.position = new Vector3 (xPositon, yPositionMiddle);
+		offset = 1;
+		state = State.PEAСE;
 	}
 
 	private void OnSwipeUp() {
@@ -128,47 +161,7 @@ public class Player : MonoBehaviour {
 		DoHit ();
 	}
 
-	void MoveUp() {
-		float y = transform.position.y;
-		if (Mathf.Abs(y - yPositionTop) < 0.01)
-			return;
-
-		if (Mathf.Abs(y - yPositionMiddle) < 0.01) {
-			//transform.localPosition.y = yPositionTop;
-			transform.position = new Vector3 (xPositon, yPositionTop, 0);
-			return;
-		}
-
-		if (Mathf.Abs(y - yPositionBottom) < 0.01) {
-			//transform.localPosition.y = yPositionMiddle;
-			transform.position = new Vector3 (xPositon, yPositionMiddle, 0);
-			return;
-		}
-
-		transform.position = new Vector3 (xPositon, yPositionBottom, 0);
-	}
-
-	void MoveDown() {
-		float y = transform.position.y;
-		if (Mathf.Abs(y - yPositionBottom) < 0.01)
-			return;
-
-		if (Mathf.Abs(y - yPositionMiddle) < 0.01) {
-			//transform.localPosition.y = yPositionMiddle;
-			transform.position = new Vector3 (xPositon, yPositionBottom, 0);
-			return;
-		}
-
-		if (Mathf.Abs(y - yPositionTop) < 0.01) {
-			//transform.localPosition.y = yPositionTop;
-			transform.position = new Vector3 (xPositon, yPositionMiddle, 0);
-			return;
-		}
-
-		transform.position = new Vector3 (xPositon, yPositionTop, 0);
-	}
-
-	void DoJumpUp() {
+	private void DoJumpUp() {
 		if (state != State.PEAСE)
 			return;
 		
@@ -197,7 +190,7 @@ public class Player : MonoBehaviour {
 		StartCoroutine (DoPeaceAfterTime(jumpDuration));
 	}
 
-	void DoJumpDown() {
+	private void DoJumpDown() {
 		if (state != State.PEAСE)
 			return;
 
@@ -232,22 +225,30 @@ public class Player : MonoBehaviour {
 		DoPeace ();
 	}
 
-	void DoPeace() {
+	private void DoPeace() {
 		if (state == State.JUMP) {
 			transform.position = new Vector3 (xPositon, jumpYTo, 0);
 		}
 		state = State.PEAСE;
 	}
 
-	void DoHit() {
+	private void DoHit() {
 		if (state != State.PEAСE)
 			return;
 		
 		state = State.HIT;
 
-		GameManager.instance.OnHit (offset, hitMinX, hitMaxX);
+		GameScreen.instance.OnHit (offset, hitMinX, hitMaxX);
 
 		StartCoroutine (DoPeaceAfterTime(hitDuration));
+	}
+
+	private void DoDeadOnWave() {
+		GameManager.instance.GameOver ();
+	}
+
+	private void DoDeadOnMissedWave() {
+		GameManager.instance.GameOver ();
 	}
 
 }

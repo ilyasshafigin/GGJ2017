@@ -14,8 +14,18 @@ public class Waves : MonoBehaviour {
 	public int[] orderLayers = new int[] {2, 6, 10};
 	//
 	public float[] xOffsets = new float[] {2.5f, 0, -2.5f};
+		
+	// Use this for initialization
+	void Start () {
+	}
 
-	private List<BigWave> waves;
+	public void OnStartGame() {
+		StartCoroutine (BigWaveSpawnLoop ());
+	}
+
+	public void OnGameOver() {
+		
+	}
 
 	private IEnumerator BigWaveSpawnLoop() {
 		yield return new WaitForSeconds (Random.Range (minSpawnTime, maxSpawnTime));
@@ -27,17 +37,6 @@ public class Waves : MonoBehaviour {
 		}
 	}
 
-	//
-	void Awake() {
-		waves = new List<BigWave> ();
-	}
-
-	// Use this for initialization
-	void Start () {
-		//SpawnWaves ();
-		StartCoroutine (BigWaveSpawnLoop ());
-	}
-
 	private void SpawnBigWave() {
 		float x = spawnX + transform.position.x;
 		int offset = Random.Range (0, 2);
@@ -47,7 +46,6 @@ public class Waves : MonoBehaviour {
 		wave.transform.SetParent (transform);
 		wave.transform.Translate(new Vector3(x, y, 0));
 		wave.GetComponent<SpriteRenderer> ().sortingOrder = orderLayers [offset];
-		waves.Add (wave);
 	}
 
 	// Событие удара
@@ -57,7 +55,7 @@ public class Waves : MonoBehaviour {
 			BigWave wave = waves [i];
 			bool isHide = wave.IsOnHit (hitOffset, hitMinX, hitMaxX);
 			if (isHide) {
-				wave.GetComponent<SpriteRenderer>().enabled = false;
+				wave.Hide ();
 			}
 		}
 	}

@@ -25,18 +25,37 @@ public class BigWave : MonoBehaviour {
 	void Update () {
 		transform.Translate (new Vector3 (-speed, 0, 0));
 
-		if (transform.position.x <= xDead) {
+		if (GameManager.instance.isGameOver) {
 			Destroy (gameObject);
+			return;
+		}
+
+		if (transform.position.x <= xDead) {
+			OnCoast ();
 		}
 	}
 
-	public void OnCollideWithCoast(Coast coast) {
-		
+	private void OnCoast() {
+		// Если персонаж не убил волну
+		if (IsShown()) {
+			GameManager.instance.GameOver ();
+		}
+		Destroy (gameObject);
+	}
+
+	//
+	public bool IsShown() {
+		return GetComponent<SpriteRenderer> ().enabled;
 	}
 
 	// На расстоянии удара?
 	public bool IsOnHit(int hitOffset, float hitMinX, float hitMaxX) {
 		return offset == hitOffset && transform.position.x < hitMaxX && transform.position.x > hitMinX; 
+	}
+
+	//
+	public void Hide() {
+		GetComponent<SpriteRenderer> ().enabled = false;
 	}
 
 	// Создает объект из префаба

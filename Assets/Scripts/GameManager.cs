@@ -6,6 +6,11 @@ public class GameManager : MonoBehaviour {
 
 	public static GameManager instance = null;
 
+	//
+	public GameScreen gameScreen;
+	//
+	public GameOverScreen gameOverScreen;
+
 	// Очки
 	public int score = 0;
 	// Пауза
@@ -13,22 +18,15 @@ public class GameManager : MonoBehaviour {
 	// Конец игры
 	public bool isGameOver = false;
 
-	//
-	public Waves waves;
-
 	// Use this for initialization
 	void Start () {
 		instance = this;
+		StartGame ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
-	}
-
-	//
-	public void OnHit(int hitOffset, float hitMinX, float hitMaxX) {
-		waves.OnHit (hitOffset, hitMinX, hitMaxX);
 	}
 
 	public void addScore(int value) {
@@ -37,9 +35,27 @@ public class GameManager : MonoBehaviour {
 
 	public void StartGame() {
 		isGameOver = false;
+		score = 0;
+		gameScreen.OnStartGame ();
+	}
+
+	public void RestartGame() {
+		CloseGameOverScreen ();
+		StartGame ();
 	}
 
 	public void GameOver() {
 		isGameOver = true;
+		gameScreen.OnGameOver ();
+		OpenGameOverScreen ();
 	}
+
+	private void OpenGameOverScreen() {
+		gameOverScreen.Show ();
+	}
+
+	private void CloseGameOverScreen() {
+		gameOverScreen.Hide ();
+	}
+
 }

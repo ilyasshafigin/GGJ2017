@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class script : MonoBehaviour {
+public class CameraScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

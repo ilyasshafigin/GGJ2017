@@ -9,9 +9,11 @@ public class BigWave : MonoBehaviour {
 	//
 	public float xDead = -10;
 
-	// Инициализация объекта
-	void Initialize(WaveGroup waveGroup) {
+	private int offset;
 
+	// Инициализация объекта
+	void Initialize(int waveOffset) {
+		offset = waveOffset;
 	}
 
 	// Use this for initialization
@@ -24,7 +26,6 @@ public class BigWave : MonoBehaviour {
 		transform.Translate (new Vector3 (-speed, 0, 0));
 
 		if (transform.position.x <= xDead) {
-			
 			Destroy (gameObject);
 		}
 	}
@@ -33,11 +34,16 @@ public class BigWave : MonoBehaviour {
 		
 	}
 
+	// На расстоянии удара?
+	public bool IsOnHit(int hitOffset, float hitMinX, float hitMaxX) {
+		return offset == hitOffset && transform.position.x < hitMaxX && transform.position.x > hitMinX; 
+	}
+
 	// Создает объект из префаба
-	public static BigWave CreateWave(WaveGroup waveGroup) {
+	public static BigWave CreateWave(int offset) {
 		GameObject gameObject = (GameObject) Object.Instantiate (Resources.Load ("Prefabs/BigWave"));
 		BigWave wave = gameObject.GetComponent<BigWave> ();
-		wave.Initialize (waveGroup);
+		wave.Initialize (offset);
 		return wave;
 	}
 

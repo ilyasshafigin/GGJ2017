@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour {
 	// Конец игры
 	public bool isGameOver = false;
 
+	//
+	public Waves waves;
+
 	// Use this for initialization
 	void Start () {
 		instance = this;
@@ -21,6 +24,11 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+	}
+
+	//
+	public void OnHit(int hitOffset, float hitMinX, float hitMaxX) {
+		waves.OnHit (hitOffset, hitMinX, hitMaxX);
 	}
 
 	public void addScore(int value) {

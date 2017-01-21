@@ -10,41 +10,54 @@ public class Player : MonoBehaviour {
 		HIT,
 		JUMP
 	}
-
+		
 	//
-	public float yPositionTop = 5;
+	public float yPositionTop = 2.5f;
 	//
 	public float yPositionMiddle = 0;
 	//
-	public float yPositionBottom = -5;
+	public float yPositionBottom = -2.5f;
 	//
-	public float xPositon = -7;
+	public float xPositon = -9;
 	//
 	public float jumpDuration = 1;
 	//
 	public float hitDuration = 1;
+	// 
+	public float minSwipeDist = 20f;
+	//
+	public float maxSwipeTime = 0.3f;
+	//
+	public float hitMaxX = -5;
+	//
+	public float hitMinX = -7;
+
+	private int offset;
 
 	private Vector3 fingerStartPos = Vector3.zero;
 	private float fingerStartTime = 0f;
 
 	private bool isSwipe = false;
-	private float minSwipeDist = 50f;
-	private float maxSwipeTime = 0.5f;
+
+	private float jumpYFrom;
+	private float jumpYTo;
+	private float jumpTime;
 
 	private State state;
 
 	void OnStart () {
 		transform.position = new Vector3 (xPositon, yPositionMiddle);
+		offset = 1;
 		state = State.PEAСE;
 	}
 
-	void FixedUpdate() {
+	void Update() {
 		if (Input.GetMouseButtonDown(0)) {
 			fingerStartPos = Input.mousePosition;
 			fingerStartTime = Time.time;
 			isSwipe = true;
 		}
-			
+
 		if(Input.GetMouseButtonUp(0))	{
 			Vector2 direction = Input.mousePosition - fingerStartPos;
 			float gestureTime = Time.time - fingerStartTime;
@@ -74,20 +87,31 @@ public class Player : MonoBehaviour {
 						OnSwipeDown ();
 					}
 				}
+			} else {
+				OnTap ();
 			}
+		}
+
+		if (state == State.JUMP) {
+			float progress = jumpTime / jumpDuration;
+			float jumpY = jumpYFrom + progress * (jumpYTo - jumpYFrom);
+
+			transform.position = new Vector3 (xPositon, jumpY, 0);
+
+			jumpTime += Time.deltaTime;
 		}
 	}
 
 	private void OnSwipeUp() {
 		Debug.Log ("OnSwipeUp");
 
-		MoveUp ();
+		DoJumpUp ();
 	}
 
 	private void OnSwipeDown() {
 		Debug.Log ("OnSwipeDown");
 
-		MoveDown ();
+		DoJumpDown ();
 	}
 
 	private void OnSwipeLeft() {
@@ -96,6 +120,12 @@ public class Player : MonoBehaviour {
 
 	private void OnSwipeRight() {
 		Debug.Log ("OnSwipeRight");
+	}
+
+	private void OnTap() {
+		Debug.Log ("OnTap");
+
+		DoHit ();
 	}
 
 	void MoveUp() {
@@ -138,8 +168,60 @@ public class Player : MonoBehaviour {
 		transform.position = new Vector3 (xPositon, yPositionTop, 0);
 	}
 
-	void DoJump() {
+	void DoJumpUp() {
+		if (state != State.PEAСE)
+			return;
+		
 		state = State.JUMP;
+
+		float y = transform.position.y;
+
+		jumpTime = 0;
+		jumpYFrom = y;
+
+		if (Mathf.Abs (y - yPositionTop) < 0.01) {
+			jumpYTo = yPositionTop;
+			offset = 0;
+		}
+
+		if (Mathf.Abs(y - yPositionMiddle) < 0.01) {
+			jumpYTo = yPositionTop;
+			offset = 0;
+		}
+
+		if (Mathf.Abs(y - yPositionBottom) < 0.01) {
+			jumpYTo = yPositionMiddle;
+			offset = 1;
+		}
+
+		StartCoroutine (DoPeaceAfterTime(jumpDuration));
+	}
+
+	void DoJumpDown() {
+		if (state != State.PEAСE)
+			return;
+
+		state = State.JUMP;
+
+		float y = transform.position.y;
+
+		jumpTime = 0;
+		jumpYFrom = y;
+
+		if (Mathf.Abs (y - yPositionBottom) < 0.01) {
+			jumpYTo = yPositionBottom;
+			offset = 2;
+		}
+
+		if (Mathf.Abs(y - yPositionMiddle) < 0.01) {
+			jumpYTo = yPositionBottom;
+			offset = 2;
+		}
+
+		if (Mathf.Abs(y - yPositionTop) < 0.01) {
+			jumpYTo = yPositionMiddle;
+			offset = 1;
+		}
 
 		StartCoroutine (DoPeaceAfterTime(jumpDuration));
 	}
@@ -151,11 +233,19 @@ public class Player : MonoBehaviour {
 	}
 
 	void DoPeace() {
+		if (state == State.JUMP) {
+			transform.position = new Vector3 (xPositon, jumpYTo, 0);
+		}
 		state = State.PEAСE;
 	}
 
 	void DoHit() {
+		if (state != State.PEAСE)
+			return;
+		
 		state = State.HIT;
+
+		GameManager.instance.OnHit (offset, hitMinX, hitMaxX);
 
 		StartCoroutine (DoPeaceAfterTime(hitDuration));
 	}

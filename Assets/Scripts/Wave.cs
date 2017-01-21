@@ -4,16 +4,11 @@ using UnityEngine;
 
 public class Wave : MonoBehaviour {
 
-	public float speed = 0.01f;
+	public float speed = 0.08f;
 	private Vector3 initialPositon;
 	public float amplitudeX = 0.4f;
 	public float amplitudeY = 0.05f;
 	private float phase;
-
-	// Инициализация объекта
-	void Initialize(WaveGroup waveGroup) {
-		
-	}
 
 	// Use this for initialization
 	void Start () {
@@ -30,10 +25,9 @@ public class Wave : MonoBehaviour {
 	}
 
 	// Создает объект из префаба
-	public static Wave CreateWave(WaveGroup waveGroup) {
+	public static Wave CreateWave() {
 		GameObject gameObject = (GameObject) Object.Instantiate (Resources.Load ("Prefabs/Wave"));
 		Wave wave = gameObject.GetComponent<Wave> ();
-		wave.Initialize (waveGroup);
 		return wave;
 	}
 }

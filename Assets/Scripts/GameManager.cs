@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
@@ -10,6 +11,8 @@ public class GameManager : MonoBehaviour {
 	public GameScreen gameScreen;
 	//
 	public GameOverScreen gameOverScreen;
+	//
+	public Text scoreText;
 
 	// Очки
 	public int score = 0;
@@ -26,10 +29,10 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		scoreText.text = score.ToString ();
 	}
 
-	public void addScore(int value) {
+	public void AddScore(int value) {
 		score += value;
 	}
 

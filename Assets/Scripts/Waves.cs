@@ -56,6 +56,8 @@ public class Waves : MonoBehaviour {
 			bool isHide = wave.IsOnHit (hitOffset, hitMinX, hitMaxX);
 			if (isHide) {
 				wave.Hide ();
+
+				GameManager.instance.AddScore (1);
 			}
 		}
 	}

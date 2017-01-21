@@ -28,6 +28,9 @@ public class BigWave : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (GameManager.instance.isPause)
+			return;
+		
 		transform.Translate (new Vector3 (-speed, 0, 0));
 
 		if (GameManager.instance.isGameOver) {

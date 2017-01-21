@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour {
 	//
 	public GameOverScreen gameOverScreen;
 	//
+	public PauseScreen pauseScreen;
+	//
 	public Text scoreText;
 
 	// Очки
@@ -20,6 +22,8 @@ public class GameManager : MonoBehaviour {
 	public bool isPause = false;
 	// Конец игры
 	public bool isGameOver = false;
+
+	private bool isResumWait = false;
 
 	// Use this for initialization
 	void Start () {
@@ -43,22 +47,47 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void RestartGame() {
-		CloseGameOverScreen ();
+		gameOverScreen.Hide ();
 		StartGame ();
 	}
 
 	public void GameOver() {
+		if (isGameOver)
+			return;
+		
 		isGameOver = true;
 		gameScreen.OnGameOver ();
-		OpenGameOverScreen ();
-	}
-
-	private void OpenGameOverScreen() {
 		gameOverScreen.Show ();
 	}
 
-	private void CloseGameOverScreen() {
-		gameOverScreen.Hide ();
+	public void PauseGame() {
+		if (isPause || isResumWait)
+			return;
+		
+		isPause = true;
+		pauseScreen.Show ();
+		//Time.timeScale = 0;
+	}
+
+	public void ResumeGame() {
+		if (!isPause || isResumWait)
+			return;
+		
+		pauseScreen.Hide ();
+		isResumWait = true;
+		StartCoroutine (DoResumeAfterTime(2));
+	}
+
+	public void ExitGame() {
+		Application.Quit ();
+	}
+
+	private IEnumerator DoResumeAfterTime(float delay) {
+		yield return new WaitForSeconds (delay);
+
+		isPause = false;
+		isResumWait = false;
+		//Time.timeScale = 1;
 	}
 
 }

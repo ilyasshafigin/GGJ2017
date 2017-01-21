@@ -53,6 +53,9 @@ public class Player : MonoBehaviour {
 		if (GameManager.instance.isGameOver)
 			return;
 
+		if (GameManager.instance.isPause)
+			return;
+
 		if (Input.GetMouseButtonDown(0)) {
 			fingerStartPos = Input.mousePosition;
 			fingerStartTime = Time.time;

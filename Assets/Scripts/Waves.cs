@@ -32,7 +32,7 @@ public class Waves : MonoBehaviour {
 	}
 
 	void Update () {
-		if (!GameManager.instance.isGameOver) {
+		if (!GameManager.instance.isGameOver && !GameManager.instance.isPause) {
 			timeMultiplier += timeSpeed;
 			currentSpeed += waveAcceleration;
 		}
@@ -55,7 +55,8 @@ public class Waves : MonoBehaviour {
 		yield return new WaitForSeconds (Random.Range (minSpawnTime / timeMultiplier, maxSpawnTime / timeMultiplier));
 
 		if (!GameManager.instance.isGameOver) {
-			SpawnBigWave ();
+			if (!GameManager.instance.isPause)
+				SpawnBigWave ();
 
 			currentCoroutine = BigWaveSpawnLoop ();
 			StartCoroutine (currentCoroutine);

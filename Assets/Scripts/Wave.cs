@@ -24,6 +24,9 @@ public class Wave : MonoBehaviour {
 	void Update () {
 		if (GameManager.instance.isGameOver)
 			return;
+
+		if (GameManager.instance.isPause)
+			return;
 		
 		phase += speed;
 		float xoff = amplitudeX * Mathf.Cos (phase);

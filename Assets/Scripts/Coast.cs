@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaveScript : MonoBehaviour {
+public class Coast : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -11,6 +11,11 @@ public class WaveScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		
+	}
+
+	// 
+	public void OnCollideWithWave(BigWave bigWave) {
 		
 	}
 }

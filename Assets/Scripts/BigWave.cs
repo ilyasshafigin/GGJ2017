@@ -22,15 +22,7 @@ public class BigWave : MonoBehaviour {
 		transform.Translate (new Vector3 (-speed, 0, 0));
 	}
 
-	//
-	void OnTriggerEnter2D(Collider2D collider) {
-		Coast coast = collider.GetComponent<Coast> ();
-		if (coast != null) {
-			coast.OnCollideWithWave (this);
 
-			Destroy (this);
-		}
-	}
 
 	// Создает объект из префаба
 	public static BigWave CreateWave(WaveGroup waveGroup) {

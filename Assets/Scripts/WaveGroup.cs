@@ -45,8 +45,8 @@ public class WaveGroup : MonoBehaviour {
 		Vector2 size = bound.size;
 		float halfWidth = size.x / 2 * transform.localScale.x;
 
-		float x = offset.x - halfWidth + transform.localPosition.x;
-		float y = offset.y + transform.localPosition.y;
+		float x = offset.x - halfWidth + transform.position.x;
+		float y = offset.y + transform.position.y;
 		while (x < offset.x + halfWidth) {
 			Wave wave = Wave.CreateWave (this);
 			wave.transform.SetParent (transform);
@@ -65,8 +65,8 @@ public class WaveGroup : MonoBehaviour {
 		Vector2 size = bound.size;
 		float halfWidth = size.x / 2 * transform.localScale.x;
 
-		float x = offset.x + halfWidth + transform.localPosition.x;
-		float y = offset.y + transform.localPosition.y;
+		float x = offset.x + halfWidth + transform.position.x;
+		float y = offset.y + transform.position.y;
 
 		BigWave wave = BigWave.CreateWave (this);
 		wave.transform.SetParent (transform);

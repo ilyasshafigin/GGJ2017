@@ -14,8 +14,4 @@ public class Coast : MonoBehaviour {
 		
 	}
 
-	// 
-	public void OnCollideWithWave(BigWave bigWave) {
-		
-	}
 }

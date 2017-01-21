@@ -4,91 +4,131 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-	public int DISTANCE = 30;
-	public float deltaY = 10f;
-	//private System.DateTime ONE_SECOND = new System.DateTime (0, 0, 0, 0, 0, 1);
-	private Touch startTouch;
-	private Touch endTouch;
-	private System.DateTime startTime;
-	private bool isMoveDone = false;
+	//
+	public float yPositionTop = 5;
+	//
+	public float yPositionMiddle = 0;
+	//
+	public float yPositionBottom = -5;
+	//
+	public float xPositon = -7;
 
-	void FixedUpdate(){
-		/*try {
-			Touch fTouch = Input.GetTouch (0);
-		
+	private Vector3 fingerStartPos = Vector3.zero;
+	private float fingerStartTime = 0f;
 
-		if (fTouch.phase == TouchPhase.Began) {
-			startTouch = fTouch;
-			endTouch = fTouch;
-			startTime = System.DateTime.Now;
-		} else if (fTouch.phase == TouchPhase.Moved) {
-			endTouch = fTouch;
-			if (Mathf.Abs (endTouch.position.y - startTouch.position.y) > deltaY) {
-				if (endTouch.position.y - startTouch.position.y > 0) {
-					MoveUp ();
-					isMoveDone = true;
-				} else {
-					MoveDown ();
-					isMoveDone = true;
-				}
-			}
-		} else if (fTouch.phase == TouchPhase.Stationary) {
-			endTouch = fTouch;
-			if (Mathf.Abs (endTouch.position.y - startTouch.position.y) < 2 &&
-			    Mathf.Abs (endTouch.position.x - startTouch.position.x) < 2) {
-				if (ONE_SECOND.CompareTo (System.DateTime.Now.Subtract (startTime)) <= 0) {
-					DoSuperHit ();
-					isMoveDone = true;
-				} else {
-					DoHit ();
-					isMoveDone = true;
-				}
-			}
-		} else if (fTouch.phase == TouchPhase.Ended) {
-			endTouch = fTouch;
-			if (Mathf.Abs (endTouch.position.y - startTouch.position.y) > deltaY) {
-				if (endTouch.position.y - startTouch.position.y > 0) {
-					MoveUp ();
-					isMoveDone = true;
-				} else {
-					MoveDown ();
-					isMoveDone = true;
-				}
-			} else if (Mathf.Abs (endTouch.position.y - startTouch.position.y) < 2 &&
-				Mathf.Abs (endTouch.position.x - startTouch.position.x) < 2) {
-				if (ONE_SECOND.CompareTo (System.DateTime.Now.Subtract (startTime)) <= 0) {
-					DoSuperHit ();
-					isMoveDone = true;
-				} else {
-					DoHit ();
-					isMoveDone = true;
-				}
-			} 
+	private bool isSwipe = false;
+	private float minSwipeDist = 50f;
+	private float maxSwipeTime = 0.5f;
+
+	void OnStart () {
+		transform.position = new Vector3 (xPositon, yPositionMiddle);
+	}
+
+	void FixedUpdate() {
+		if (Input.GetMouseButtonDown(0)) {
+			fingerStartPos = Input.mousePosition;
+			fingerStartTime = Time.time;
+			isSwipe = true;
 		}
-	} catch(System.Exception e) {}*/
-		int speed = 1;
-		if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved) {
-			// Get movement of the finger since last frame
-			Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
+			
+		if(Input.GetMouseButtonUp(0))	{
+			Vector2 direction = Input.mousePosition - fingerStartPos;
+			float gestureTime = Time.time - fingerStartTime;
+			float gestureDist = direction.magnitude;
 
-			// Move object across XY plane
-			transform.Translate(-touchDeltaPosition.x * speed, -touchDeltaPosition.y * speed, 0);
+			if (isSwipe && gestureTime < maxSwipeTime && gestureDist > minSwipeDist) {
+				Vector2 swipeType = Vector2.zero;
+
+				if (Mathf.Abs (direction.x) > Mathf.Abs (direction.y)) {
+					swipeType = Vector2.right * Mathf.Sign (direction.x);
+				} else {
+					swipeType = Vector2.up * Mathf.Sign (direction.y);
+				}
+
+				if (swipeType.x != 0f) {
+					if (swipeType.x > 0f) {
+						OnSwipeRight ();
+					} else {
+						OnSwipeLeft ();
+					}
+				}
+
+				if (swipeType.y != 0f) {
+					if (swipeType.y > 0f) {
+						OnSwipeUp ();
+					} else {
+						OnSwipeDown ();
+					}
+				}
+			}
 		}
 	}
 
-	void MoveUp(){
-		transform.Translate (0, DISTANCE, 0);
+	private void OnSwipeUp() {
+		Debug.Log ("OnSwipeUp");
+
+		MoveUp ();
 	}
 
-	void MoveDown(){
-		transform.Translate (0, -DISTANCE, 0);
+	private void OnSwipeDown() {
+		Debug.Log ("OnSwipeDown");
+
+		MoveDown ();
 	}
 
-	void DoSuperHit(){
+	private void OnSwipeLeft() {
+		Debug.Log ("OnSwipeLeft");
+	}
+
+	private void OnSwipeRight() {
+		Debug.Log ("OnSwipeRight");
+	}
+
+	void MoveUp() {
+		float y = transform.position.y;
+		if (Mathf.Abs(y - yPositionTop) < 0.01)
+			return;
+
+		if (Mathf.Abs(y - yPositionMiddle) < 0.01) {
+			//transform.localPosition.y = yPositionTop;
+			transform.position = new Vector3 (xPositon, yPositionTop, 0);
+			return;
+		}
+
+		if (Mathf.Abs(y - yPositionBottom) < 0.01) {
+			//transform.localPosition.y = yPositionMiddle;
+			transform.position = new Vector3 (xPositon, yPositionMiddle, 0);
+			return;
+		}
+
+		transform.position = new Vector3 (xPositon, yPositionBottom, 0);
+	}
+
+	void MoveDown() {
+		float y = transform.position.y;
+		if (Mathf.Abs(y - yPositionBottom) < 0.01)
+			return;
+
+		if (Mathf.Abs(y - yPositionMiddle) < 0.01) {
+			//transform.localPosition.y = yPositionMiddle;
+			transform.position = new Vector3 (xPositon, yPositionBottom, 0);
+			return;
+		}
+
+		if (Mathf.Abs(y - yPositionTop) < 0.01) {
+			//transform.localPosition.y = yPositionTop;
+			transform.position = new Vector3 (xPositon, yPositionMiddle, 0);
+			return;
+		}
+
+		transform.position = new Vector3 (xPositon, yPositionTop, 0);
+	}
+
+	void DoSuperHit() {
 
 	}
 
-	void DoHit(){
+	void DoHit() {
 
 	}
 

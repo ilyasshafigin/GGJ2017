@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
+	// 
+	public enum State {
+		PEAСE,
+		HIT,
+		JUMP
+	}
+
 	//
 	public float yPositionTop = 5;
 	//
@@ -12,6 +19,10 @@ public class Player : MonoBehaviour {
 	public float yPositionBottom = -5;
 	//
 	public float xPositon = -7;
+	//
+	public float jumpDuration = 1;
+	//
+	public float hitDuration = 1;
 
 	private Vector3 fingerStartPos = Vector3.zero;
 	private float fingerStartTime = 0f;
@@ -20,8 +31,11 @@ public class Player : MonoBehaviour {
 	private float minSwipeDist = 50f;
 	private float maxSwipeTime = 0.5f;
 
+	private State state;
+
 	void OnStart () {
 		transform.position = new Vector3 (xPositon, yPositionMiddle);
+		state = State.PEAСE;
 	}
 
 	void FixedUpdate() {
@@ -124,12 +138,26 @@ public class Player : MonoBehaviour {
 		transform.position = new Vector3 (xPositon, yPositionTop, 0);
 	}
 
-	void DoSuperHit() {
+	void DoJump() {
+		state = State.JUMP;
 
+		StartCoroutine (DoPeaceAfterTime(jumpDuration));
+	}
+
+	private IEnumerator DoPeaceAfterTime(float delay) {
+		yield return new WaitForSeconds (delay);
+
+		DoPeace ();
+	}
+
+	void DoPeace() {
+		state = State.PEAСE;
 	}
 
 	void DoHit() {
+		state = State.HIT;
 
+		StartCoroutine (DoPeaceAfterTime(hitDuration));
 	}
 
 }

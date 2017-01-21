@@ -8,6 +8,8 @@ public class WaveGroup : MonoBehaviour {
 	public float minSpawnTime;
 	// Максимальное время спауна
 	public float maxSpawnTime;
+	//
+	public float spawnX = 10;
 
 	private LinkedList<Wave> waves;
 	private LinkedList<BigWave> bigWaves;
@@ -30,7 +32,7 @@ public class WaveGroup : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		SpawnWaves ();
+		//SpawnWaves ();
 		StartCoroutine (BigWaveSpawnLoop ());
 	}
 	
@@ -38,7 +40,7 @@ public class WaveGroup : MonoBehaviour {
 	void Update () {
 		
 	}
-
+	/*
 	private void SpawnWaves() {
 		BoxCollider2D bound = GetComponent<BoxCollider2D>();
 		Vector2 offset = bound.offset;
@@ -58,15 +60,10 @@ public class WaveGroup : MonoBehaviour {
 			x += waveSize.x * wave.transform.localScale.x;
 		}
 	}
-
+*/
 	private void SpawnBigWave() {
-		BoxCollider2D bound = GetComponent<BoxCollider2D>();
-		Vector2 offset = bound.offset;
-		Vector2 size = bound.size;
-		float halfWidth = size.x / 2 * transform.localScale.x;
-
-		float x = offset.x + halfWidth + transform.position.x;
-		float y = offset.y + transform.position.y;
+		float x = spawnX + transform.position.x;
+		float y = transform.position.y;
 
 		BigWave wave = BigWave.CreateWave (this);
 		wave.transform.SetParent (transform);

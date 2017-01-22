@@ -65,7 +65,7 @@ public class Waves : MonoBehaviour {
 
 	private void SpawnBigWave() {
 		float x = spawnX + transform.position.x;
-		int offset = Random.Range (0, 2);
+		int offset = Random.Range (0, 3);
 		float y = transform.position.y + yOffsets[offset];
 
 		BigWave wave = BigWave.CreateWave (offset, currentSpeed, deadX);

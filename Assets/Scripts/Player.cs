@@ -6,9 +6,10 @@ public class Player : MonoBehaviour {
 
 	// 
 	public enum State {
-		PEAСE,
+		IDLE,
 		HIT,
-		JUMP
+		JUMP,
+		DEAD
 	}
 		
 	//
@@ -31,6 +32,11 @@ public class Player : MonoBehaviour {
 	public float hitMaxX = -5;
 	//
 	public float hitMinX = -7;
+
+	//
+	public AudioClip hitSound;
+	//
+	public AudioClip deadSound;
 
 	private int offset;
 
@@ -138,7 +144,7 @@ public class Player : MonoBehaviour {
 	private void ResetState() {
 		transform.position = new Vector3 (xPositon, yPositionMiddle);
 		offset = 1;
-		state = State.PEAСE;
+		state = State.IDLE;
 	}
 
 	private void OnSwipeUp() {
@@ -168,7 +174,7 @@ public class Player : MonoBehaviour {
 	}
 
 	private void DoJumpUp() {
-		if (state != State.PEAСE)
+		if (state != State.IDLE)
 			return;
 		
 		state = State.JUMP;
@@ -193,11 +199,11 @@ public class Player : MonoBehaviour {
 			offset = 1;
 		}
 
-		StartCoroutine (DoPeaceAfterTime(jumpDuration));
+		StartCoroutine (DoIdleAfterTime(jumpDuration));
 	}
 
 	private void DoJumpDown() {
-		if (state != State.PEAСE)
+		if (state != State.IDLE)
 			return;
 
 		state = State.JUMP;
@@ -222,41 +228,53 @@ public class Player : MonoBehaviour {
 			offset = 1;
 		}
 
-		StartCoroutine (DoPeaceAfterTime(jumpDuration));
+		StartCoroutine (DoIdleAfterTime(jumpDuration));
 	}
 
-	private IEnumerator DoPeaceAfterTime(float delay) {
+	private IEnumerator DoIdleAfterTime(float delay) {
 		yield return new WaitForSeconds (delay);
 
-		DoPeace ();
+		DoIdle ();
 	}
 
-	private void DoPeace() {
+	private void DoIdle() {
 		if (state == State.JUMP) {
 			transform.position = new Vector3 (xPositon, jumpYTo, 0);
 			// Update order
 			GetComponent<SortingLayer> ().UpdateOrder (offset);
 		}
-		state = State.PEAСE;
+		state = State.IDLE;
 	}
 
 	private void DoHit() {
-		if (state != State.PEAСE)
+		if (state != State.IDLE)
 			return;
 		
 		state = State.HIT;
 
 		GameScreen.instance.OnHit (offset, hitMinX, hitMaxX);
 
-		StartCoroutine (DoPeaceAfterTime(hitDuration));
+		PlaySound (hitSound);
+
+		StartCoroutine (DoIdleAfterTime(hitDuration));
 	}
 
 	private void DoDeadOnWave() {
+		PlaySound (deadSound);
 		GameManager.instance.GameOver ();
 	}
 
 	private void DoDeadOnMissedWave() {
+		PlaySound (deadSound);
 		GameManager.instance.GameOver ();
+	}
+
+	private void PlaySound(AudioClip sound) {
+		AudioSource audioSource = GetComponent<AudioSource> ();
+		audioSource.Stop ();
+		audioSource.loop = false;
+		audioSource.clip = sound;
+		audioSource.Play ();
 	}
 
 }

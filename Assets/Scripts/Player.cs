@@ -19,19 +19,19 @@ public class Player : MonoBehaviour {
 	//
 	public float yPositionBottom = -2.5f;
 	//
-	public float xPositon = -9;
+	public float xPositon = -7;
 	//
-	public float jumpDuration = 1;
+	public float jumpDuration = 0.15f;
 	//
-	public float hitDuration = 1;
+	public float hitDuration = 0.15f;
 	// 
 	public float minSwipeDist = 20f;
 	//
 	public float maxSwipeTime = 0.3f;
 	//
-	public float hitMaxX = -5;
+	public float hitMaxX = -3;
 	//
-	public float hitMinX = -7;
+	public float hitMinX = -9;
 
 	//
 	public AudioClip hitSound;
@@ -51,7 +51,13 @@ public class Player : MonoBehaviour {
 
 	private State state;
 
-	void OnStart () {
+	private Animator animator;
+	private int jumpHash = Animator.StringToHash ("jump");
+	private int hitHash = Animator.StringToHash ("attack");
+	private int deadHash = Animator.StringToHash ("dead");
+
+	void Start () {
+		animator = GetComponent<Animator> ();
 		ResetState ();
 	}
 
@@ -179,6 +185,8 @@ public class Player : MonoBehaviour {
 		
 		state = State.JUMP;
 
+		animator.SetTrigger (jumpHash);
+
 		float y = transform.position.y;
 
 		jumpTime = 0;
@@ -207,6 +215,8 @@ public class Player : MonoBehaviour {
 			return;
 
 		state = State.JUMP;
+
+		animator.SetTrigger (jumpHash);
 
 		float y = transform.position.y;
 
@@ -243,6 +253,7 @@ public class Player : MonoBehaviour {
 			// Update order
 			GetComponent<SortingLayer> ().UpdateOrder (offset);
 		}
+			
 		state = State.IDLE;
 	}
 
@@ -256,16 +267,20 @@ public class Player : MonoBehaviour {
 
 		PlaySound (hitSound);
 
+		animator.SetTrigger (hitHash);
+
 		StartCoroutine (DoIdleAfterTime(hitDuration));
 	}
 
 	private void DoDeadOnWave() {
 		PlaySound (deadSound);
+		animator.SetTrigger (deadHash);
 		GameManager.instance.GameOver ();
 	}
 
 	private void DoDeadOnMissedWave() {
 		PlaySound (deadSound);
+		animator.SetTrigger (deadHash);
 		GameManager.instance.GameOver ();
 	}
 

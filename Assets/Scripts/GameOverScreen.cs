@@ -1,10 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameOverScreen : MonoBehaviour {
 
 	public static GameOverScreen instance = null;
+
+	//
+	public Text playerText;
+	//
+	public Text highText;
 
 	// Use this for initialization
 	void Start () {

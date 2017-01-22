@@ -12,6 +12,8 @@ public class GameOverScreen : MonoBehaviour {
 	//
 	public Text highText;
 
+	private string highScoreKey = "HighScore";
+
 	// Use this for initialization
 	void Start () {
 		instance = this;
@@ -26,6 +28,18 @@ public class GameOverScreen : MonoBehaviour {
 	}
 
 	public void Show() {
+		int playerScore = GameManager.instance.GetScore ();
+		int highScore = PlayerPrefs.GetInt (highScoreKey, 0);
+
+		if (playerScore > highScore) {
+			highScore = playerScore;
+			PlayerPrefs.SetInt (highScoreKey, highScore);
+			PlayerPrefs.Save ();
+		}
+
+		playerText.text = playerScore.ToString ();
+		highText.text = highScore.ToString ();
+
 		gameObject.SetActive (true);
 	}
 

@@ -46,7 +46,7 @@ public class BigWave : MonoBehaviour {
 	private void OnCoast() {
 		// Если персонаж не убил волну
 		if (IsShown()) {
-			GameManager.instance.GameOver ();
+			GameScreen.instance.OnWaveMissed ();
 		}
 		Destroy (gameObject);
 	}
@@ -58,7 +58,10 @@ public class BigWave : MonoBehaviour {
 
 	// На расстоянии удара?
 	public bool IsOnHit(int hitOffset, float hitMinX, float hitMaxX) {
-		return offset == hitOffset && transform.position.x < hitMaxX && transform.position.x > hitMinX; 
+		return GetComponent<SpriteRenderer>().enabled &&
+			offset == hitOffset &&
+			transform.position.x < hitMaxX &&
+			transform.position.x > hitMinX; 
 	}
 
 	//

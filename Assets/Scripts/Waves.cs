@@ -74,16 +74,19 @@ public class Waves : MonoBehaviour {
 	}
 
 	// Событие удара
-	public void OnHit(int hitOffset, float hitMinX, float hitMaxX) {
+	public bool OnHit(int hitOffset, float hitMinX, float hitMaxX) {
+		bool isDeadWave = false;
 		BigWave[] waves = GetComponentsInChildren<BigWave> ();
 		for (int i = 0; i < waves.Length; i++) {
 			BigWave wave = waves [i];
 			bool isHide = wave.IsOnHit (hitOffset, hitMinX, hitMaxX);
 			if (isHide) {
 				wave.Hide ();
+				isDeadWave = true;
 
 				GameManager.instance.AddScore (1);
 			}
 		}
+		return isDeadWave;
 	}
 }

@@ -37,6 +37,8 @@ public class Player : MonoBehaviour {
 	public AudioClip hitSound;
 	//
 	public AudioClip deadSound;
+	//
+	public AudioClip jumpSound;
 
 	private int offset;
 
@@ -54,7 +56,8 @@ public class Player : MonoBehaviour {
 	private Animator animator;
 	private int jumpHash = Animator.StringToHash ("jump");
 	private int hitHash = Animator.StringToHash ("attack");
-	private int deadHash = Animator.StringToHash ("dead");
+
+	private bool isWaitGameOver = false;
 
 	void Start () {
 		animator = GetComponent<Animator> ();
@@ -151,6 +154,10 @@ public class Player : MonoBehaviour {
 		transform.position = new Vector3 (xPositon, yPositionMiddle);
 		offset = 1;
 		state = State.IDLE;
+		isWaitGameOver = false;
+		animator.ResetTrigger (hitHash);
+		animator.ResetTrigger (jumpHash);
+		animator.SetBool ("dead", false);
 	}
 
 	private void OnSwipeUp() {
@@ -185,6 +192,7 @@ public class Player : MonoBehaviour {
 		
 		state = State.JUMP;
 
+		PlaySound (jumpSound);
 		animator.SetTrigger (jumpHash);
 
 		float y = transform.position.y;
@@ -216,6 +224,7 @@ public class Player : MonoBehaviour {
 
 		state = State.JUMP;
 
+		PlaySound (jumpSound);
 		animator.SetTrigger (jumpHash);
 
 		float y = transform.position.y;
@@ -247,6 +256,13 @@ public class Player : MonoBehaviour {
 		DoIdle ();
 	}
 
+	private IEnumerator DoGameOverAfterTime(float delay) {
+		yield return new WaitForSeconds (delay);
+
+		isWaitGameOver = false;
+		GameManager.instance.GameOver ();
+	}
+
 	private void DoIdle() {
 		if (state == State.JUMP) {
 			transform.position = new Vector3 (xPositon, jumpYTo, 0);
@@ -255,6 +271,10 @@ public class Player : MonoBehaviour {
 		}
 			
 		state = State.IDLE;
+
+		animator.ResetTrigger (hitHash);
+		animator.ResetTrigger (jumpHash);
+		animator.SetBool ("dead", false);
 	}
 
 	private void DoHit() {
@@ -263,9 +283,9 @@ public class Player : MonoBehaviour {
 		
 		state = State.HIT;
 
-		GameScreen.instance.OnHit (offset, hitMinX, hitMaxX);
-
-		PlaySound (hitSound);
+		if (GameScreen.instance.OnHit (offset, hitMinX, hitMaxX)) {
+			PlaySound (hitSound);
+		}
 
 		animator.SetTrigger (hitHash);
 
@@ -274,14 +294,25 @@ public class Player : MonoBehaviour {
 
 	private void DoDeadOnWave() {
 		PlaySound (deadSound);
-		animator.SetTrigger (deadHash);
-		GameManager.instance.GameOver ();
+		animator.SetBool ("dead", true);
+
+		isWaitGameOver = true;
+		StartCoroutine (DoGameOverAfterTime (2));
+	}
+
+	public void OnWaveMissed() {
+		DoDeadOnMissedWave ();
 	}
 
 	private void DoDeadOnMissedWave() {
+		if (isWaitGameOver)
+			return;
+		
 		PlaySound (deadSound);
-		animator.SetTrigger (deadHash);
-		GameManager.instance.GameOver ();
+		animator.SetBool ("dead", true);
+
+		isWaitGameOver = true;
+		StartCoroutine (DoGameOverAfterTime (2));
 	}
 
 	private void PlaySound(AudioClip sound) {

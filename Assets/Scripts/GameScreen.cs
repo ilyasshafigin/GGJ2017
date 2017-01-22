@@ -34,7 +34,12 @@ public class GameScreen : MonoBehaviour {
 	}
 
 	//
-	public void OnHit(int hitOffset, float hitMinX, float hitMaxX) {
-		waves.OnHit (hitOffset, hitMinX, hitMaxX);
+	public bool OnHit(int hitOffset, float hitMinX, float hitMaxX) {
+		return waves.OnHit (hitOffset, hitMinX, hitMaxX);
 	}
+
+	public void OnWaveMissed() {
+		player.OnWaveMissed ();
+	}
+
 }

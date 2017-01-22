@@ -40,6 +40,10 @@ public class GameManager : MonoBehaviour {
 		score += value;
 	}
 
+	public int GetScore() {
+		return score;
+	}
+
 	public void StartGame() {
 		isGameOver = false;
 		score = 0;

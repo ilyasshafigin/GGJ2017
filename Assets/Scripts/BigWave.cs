@@ -11,6 +11,11 @@ public class BigWave : MonoBehaviour {
 	//
 	private int offset;
 
+	private Animator animator;
+	private int deadHash = Animator.StringToHash("dead");
+
+	private bool isDead = false;
+
 	// Инициализация объекта
 	void Initialize(int waveOffset, float waveSpeed, float waveXDead) {
 		offset = waveOffset;
@@ -23,7 +28,7 @@ public class BigWave : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+		animator = GetComponent<Animator> ();
 	}
 	
 	// Update is called once per frame
@@ -53,20 +58,25 @@ public class BigWave : MonoBehaviour {
 
 	//
 	public bool IsShown() {
-		return GetComponent<SpriteRenderer> ().enabled;
+		return !isDead;
 	}
 
 	// На расстоянии удара?
 	public bool IsOnHit(int hitOffset, float hitMinX, float hitMaxX) {
-		return GetComponent<SpriteRenderer>().enabled &&
+		return !isDead &&
 			offset == hitOffset &&
 			transform.position.x < hitMaxX &&
 			transform.position.x > hitMinX; 
 	}
 
+	public void OnHit() {
+		animator.SetTrigger (deadHash);
+		Hide ();
+	}
+
 	//
 	public void Hide() {
-		GetComponent<SpriteRenderer> ().enabled = false;
+		isDead = true;
 	}
 
 	// Создает объект из префаба

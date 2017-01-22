@@ -1,0 +1,784 @@
+fileFormatVersion: 2
+guid: c333312d1eadeb24380230a8748b5fb6
+timeCreated: 1485078792
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: viking-dead_0
+    21300002: viking-dead_1
+    21300004: viking-dead_2
+    21300006: viking-dead_3
+    21300008: viking-dead_4
+    21300010: viking-dead_5
+    21300012: viking-dead_6
+    21300014: viking-dead_7
+    21300016: viking-dead_8
+    21300018: viking-dead_9
+    21300020: viking-dead_10
+    21300022: viking-dead_11
+    21300024: viking-dead_12
+    21300026: viking-dead_13
+    21300028: viking-dead_14
+    21300030: viking-dead_15
+    21300032: viking-dead_16
+    21300034: viking-dead_17
+    21300036: viking-dead_18
+    21300038: viking-dead_19
+    21300040: viking-dead_20
+    21300042: viking-dead_21
+    21300044: viking-dead_22
+    21300046: viking-dead_23
+    21300048: viking-dead_24
+    21300050: viking-dead_25
+    21300052: viking-dead_26
+    21300054: viking-dead_27
+    21300056: viking-dead_28
+    21300058: viking-dead_29
+    21300060: viking-dead_30
+    21300062: viking-dead_31
+    21300064: viking-dead_32
+    21300066: viking-dead_33
+    21300068: viking-dead_34
+    21300070: viking-dead_35
+    21300072: viking-dead_36
+    21300074: viking-dead_37
+    21300076: viking-dead_38
+    21300078: viking-dead_39
+    21300080: viking-dead_40
+    21300082: viking-dead_41
+    21300084: viking-dead_42
+    21300086: viking-dead_43
+    21300088: viking-dead_44
+    21300090: viking-dead_45
+    21300092: viking-dead_46
+    21300094: viking-dead_47
+    21300096: viking-dead_48
+    21300098: viking-dead_49
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: viking-dead_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5894
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_1
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 5894
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_2
+      rect:
+        serializedVersion: 2
+        x: 1192
+        y: 5894
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_3
+      rect:
+        serializedVersion: 2
+        x: 1788
+        y: 5894
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_4
+      rect:
+        serializedVersion: 2
+        x: 2384
+        y: 5894
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_5
+      rect:
+        serializedVersion: 2
+        x: 2980
+        y: 5894
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_6
+      rect:
+        serializedVersion: 2
+        x: 3576
+        y: 5894
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5052
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_8
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 5052
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_9
+      rect:
+        serializedVersion: 2
+        x: 1192
+        y: 5052
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_10
+      rect:
+        serializedVersion: 2
+        x: 1788
+        y: 5052
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_11
+      rect:
+        serializedVersion: 2
+        x: 2384
+        y: 5052
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_12
+      rect:
+        serializedVersion: 2
+        x: 2980
+        y: 5052
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_13
+      rect:
+        serializedVersion: 2
+        x: 3576
+        y: 5052
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4210
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_15
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 4210
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_16
+      rect:
+        serializedVersion: 2
+        x: 1192
+        y: 4210
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_17
+      rect:
+        serializedVersion: 2
+        x: 1788
+        y: 4210
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_18
+      rect:
+        serializedVersion: 2
+        x: 2384
+        y: 4210
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_19
+      rect:
+        serializedVersion: 2
+        x: 2980
+        y: 4210
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_20
+      rect:
+        serializedVersion: 2
+        x: 3576
+        y: 4210
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3368
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_22
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 3368
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_23
+      rect:
+        serializedVersion: 2
+        x: 1192
+        y: 3368
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_24
+      rect:
+        serializedVersion: 2
+        x: 1788
+        y: 3368
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_25
+      rect:
+        serializedVersion: 2
+        x: 2384
+        y: 3368
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_26
+      rect:
+        serializedVersion: 2
+        x: 2980
+        y: 3368
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_27
+      rect:
+        serializedVersion: 2
+        x: 3576
+        y: 3368
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2526
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_29
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 2526
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_30
+      rect:
+        serializedVersion: 2
+        x: 1192
+        y: 2526
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_31
+      rect:
+        serializedVersion: 2
+        x: 1788
+        y: 2526
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_32
+      rect:
+        serializedVersion: 2
+        x: 2384
+        y: 2526
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_33
+      rect:
+        serializedVersion: 2
+        x: 2980
+        y: 2526
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_34
+      rect:
+        serializedVersion: 2
+        x: 3576
+        y: 2526
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1684
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_36
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 1684
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_37
+      rect:
+        serializedVersion: 2
+        x: 1192
+        y: 1684
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_38
+      rect:
+        serializedVersion: 2
+        x: 1788
+        y: 1684
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_39
+      rect:
+        serializedVersion: 2
+        x: 2384
+        y: 1684
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_40
+      rect:
+        serializedVersion: 2
+        x: 2980
+        y: 1684
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_41
+      rect:
+        serializedVersion: 2
+        x: 3576
+        y: 1684
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_42
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 842
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_43
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 842
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_44
+      rect:
+        serializedVersion: 2
+        x: 1192
+        y: 842
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_45
+      rect:
+        serializedVersion: 2
+        x: 1788
+        y: 842
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_46
+      rect:
+        serializedVersion: 2
+        x: 2384
+        y: 842
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_47
+      rect:
+        serializedVersion: 2
+        x: 2980
+        y: 842
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_48
+      rect:
+        serializedVersion: 2
+        x: 3576
+        y: 842
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: viking-dead_49
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 596
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

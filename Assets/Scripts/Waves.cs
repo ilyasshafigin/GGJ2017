@@ -81,7 +81,7 @@ public class Waves : MonoBehaviour {
 			BigWave wave = waves [i];
 			bool isHide = wave.IsOnHit (hitOffset, hitMinX, hitMaxX);
 			if (isHide) {
-				wave.Hide ();
+				wave.OnHit ();
 				isDeadWave = true;
 
 				GameManager.instance.AddScore (1);
